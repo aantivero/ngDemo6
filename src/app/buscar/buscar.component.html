@@ -1,0 +1,6 @@
+<h2>Buscador</h2>
+<form>
+  <input type="search" name="query" [(ngModel)]="query" (keyup.enter)="buscar()">
+  <button type="button" (click)="buscar()">Buscar</button>
+</form>
+<pre>{{searchResults | json}}</pre>
