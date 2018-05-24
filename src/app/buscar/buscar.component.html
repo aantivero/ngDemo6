@@ -3,4 +3,21 @@
   <input type="search" name="query" [(ngModel)]="query" (keyup.enter)="buscar()">
   <button type="button" (click)="buscar()">Buscar</button>
 </form>
-<pre>{{searchResults | json}}</pre>
+<table *ngIf="searchResults">
+  <thead>
+  <tr>
+    <th>Nombre</th>
+    <th>Telefono</th>
+    <th>Dirección</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let person of searchResults; let i=index">
+    <td>{{person.name}}</td>
+    <td>{{person.phone}}</td>
+    <td>{{person.address.street}}<br/>
+      {{person.address.city}}, {{person.address.state}} {{person.address.zip}}
+    </td>
+  </tr>
+  </tbody>
+</table>
