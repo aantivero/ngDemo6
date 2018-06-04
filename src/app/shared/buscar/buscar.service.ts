@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs/index';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +10,20 @@ export class BuscarService {
 
   constructor(private http: HttpClient) { }
 
+  search(q: string): Observable<any> {
+    if (!q || q === '*') {
+      q = '';
+    } else {
+      q = q.toLowerCase();
+    }
+    return this.getAll().pipe(
+      map(
+        (data: any) => data.filter(
+          item => JSON.stringify(item).toLowerCase().includes(q)
+        )
+      )
+    );
+  }
   getAll() {
     return this.http.get('assets/data/persona.json');
   }

@@ -16,7 +16,7 @@ export class BuscarComponent implements OnInit {
   }
 
   buscar(): void {
-    this.buscarService.getAll().subscribe(
+    this.buscarService.search(this.query).subscribe(
       (data: any) => { this.searchResults = data; },
       error => console.error(error)
     );
