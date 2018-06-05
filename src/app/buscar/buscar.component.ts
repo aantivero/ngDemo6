@@ -11,7 +11,7 @@ import {Subscription} from 'rxjs';
 export class BuscarComponent implements OnInit, OnDestroy {
   query: string;
   searchResults: Array<Person>;
-  sub: Subscription
+  sub: Subscription;
 
   constructor(private buscarService: BuscarService, private route: ActivatedRoute) { }
 
