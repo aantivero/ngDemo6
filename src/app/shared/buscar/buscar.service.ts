@@ -18,7 +18,9 @@ export class BuscarService {
     }
     return this.getAll().pipe(
       map(
-        (data: any) => data.filter(
+        (data: any) => data
+          .map(item => !!localStorage['person' + item.id] ? JSON.parse(localStorage['person' + item.id]) : item)
+          .filter(
           item => JSON.stringify(item).toLowerCase().includes(q)
         )
       )
@@ -26,6 +28,19 @@ export class BuscarService {
   }
   getAll() {
     return this.http.get('assets/data/persona.json');
+  }
+
+  get(id: number) {
+    return this.getAll().pipe(map((all: any) => {
+      if (localStorage['person' + id]) {
+        return JSON.parse(localStorage['person' + id]);
+      }
+      return all.find(e => e.id === id);
+    }));
+  }
+
+  save(person: Person) {
+    localStorage['person' + person.id] = JSON.stringify(person);
   }
 }
 
