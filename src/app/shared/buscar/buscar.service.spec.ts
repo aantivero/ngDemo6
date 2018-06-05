@@ -41,4 +41,30 @@ describe('BuscarService', () => {
   it('debería crearse el servicio', () => {
     expect(service).toBeTruthy();
   });
+
+  it('debería filtrar por term', () => {
+    const dummyData = [
+      {name: 'Alan Turing'}
+    ];
+    service.search('ala').subscribe((people: any) => {
+      expect(people.length).toBe(1);
+      expect(people[0].name).toBe('Alan Turing');
+    });
+    const req = httpMock.expectOne('assets/data/persona.json');
+    expect(req.request.method).toBe('GET');
+    req.flush(dummyData);
+  });
+
+  it('debería filtrar por id', () => {
+    const dummyData = [
+      {id: 1, name: 'Bruce Lee'},
+      {id: 2, name: 'Donnie Yen'}
+    ];
+    service.get(2).subscribe((persona: any) => {
+      expect(persona.name).toBe('Donnie Yen');
+    });
+    const req = httpMock.expectOne('assets/data/persona.json');
+    expect(req.request.method).toBe('GET');
+    req.flush(dummyData);
+  });
 });
