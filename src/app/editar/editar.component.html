@@ -1,12 +1,13 @@
 <div *ngIf="person">
   <h3>{{editName}}</h3>
+  <form (ngSubmit)="save()" ngNativeValidate>
   <div>
     <label>Id:</label>
     {{person.id}}
   </div>
   <div>
     <label>Nombre:</label>
-    <input [(ngModel)]="editName" name="name" id="name" placeholder="nombre"/>
+    <input [(ngModel)]="editName" name="name" id="name" placeholder="nombre" required/>
   </div>
   <div>
     <label>Telefono:</label>
@@ -15,12 +16,13 @@
   <fieldset>
     <legend>Dirección:</legend>
     <address>
-      <input [(ngModel)]="editAddress.street" id="street"><br/>
-      <input [(ngModel)]="editAddress.city" id="city">,
-      <input [(ngModel)]="editAddress.state" id="state" size="2">
-      <input [(ngModel)]="editAddress.zip" id="zip" size="5">
+      <input [(ngModel)]="editAddress.street" name="street" id="street"><br/>
+      <input [(ngModel)]="editAddress.city" name="city" id="city">,
+      <input [(ngModel)]="editAddress.state" name="state" id="state" size="2">
+      <input [(ngModel)]="editAddress.zip" name="zip" id="zip" size="5">
     </address>
   </fieldset>
-  <button (click)="save()" id="save">Guardar</button>
+  <button type="submit" id="save">Guardar</button>
   <button (click)="cancel()" id="cancel">Cancelar</button>
+  </form>
 </div>
