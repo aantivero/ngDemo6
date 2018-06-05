@@ -41,4 +41,16 @@ describe('BuscarComponent', () => {
   it('debería crearse', () => {
     expect(component).toBeTruthy();
   });
+
+  it('deberia buscar cuando term es seteado y search() es llamado', () => {
+    component = fixture.debugElement.componentInstance;
+    component.query = 'M';
+    component.buscar();
+    expect(mockBuscarService.searchSpy).toHaveBeenCalledWith('M');
+  });
+
+  it('debería buscar automaticamente cuando el term se encuentra en la URL', () => {
+    fixture.detectChanges();
+    expect(mockBuscarService.searchSpy).toHaveBeenCalledWith('lee');
+  });
 });
