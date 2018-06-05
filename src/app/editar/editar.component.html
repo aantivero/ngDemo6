@@ -1,13 +1,16 @@
 <div *ngIf="person">
   <h3>{{editName}}</h3>
-  <form (ngSubmit)="save()" ngNativeValidate>
+  <form (ngSubmit)="save()" #editForm="ngForm">
   <div>
     <label>Id:</label>
     {{person.id}}
   </div>
   <div>
     <label>Nombre:</label>
-    <input [(ngModel)]="editName" name="name" id="name" placeholder="nombre" required/>
+    <input [(ngModel)]="editName" name="name" id="name" placeholder="nombre" required #name="ngModel"/>
+    <div [hidden]="name.valid || name.pristine" style="color: red">
+      El nombre es requerido
+    </div>
   </div>
   <div>
     <label>Telefono:</label>
@@ -22,7 +25,7 @@
       <input [(ngModel)]="editAddress.zip" name="zip" id="zip" size="5">
     </address>
   </fieldset>
-  <button type="submit" id="save">Guardar</button>
+  <button type="submit" id="save" [disabled]="!editForm.form.valid">Guardar</button>
   <button (click)="cancel()" id="cancel">Cancelar</button>
   </form>
 </div>
