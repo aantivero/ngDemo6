@@ -7,7 +7,7 @@ import {BuscarService} from '../shared/buscar/buscar.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
-import {MatIconModule, MatListModule} from '@angular/material';
+import {MatFormFieldControl, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule} from '@angular/material';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 describe('BuscarComponent', () => {
@@ -29,7 +29,8 @@ describe('BuscarComponent', () => {
         {provide: ActivatedRoute, useValue: mockActivatedRoute},
         {provide: Router, value: mockRouter}
       ],
-      imports: [FormsModule, RouterTestingModule, MatListModule, MatIconModule, NoopAnimationsModule]
+      imports: [FormsModule, RouterTestingModule,
+        MatListModule, MatIconModule, NoopAnimationsModule, MatFormFieldModule, MatInputModule]
     })
     .compileComponents();
   }));

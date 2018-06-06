@@ -6,6 +6,8 @@ import {MockActivatedRoute, MockRouter} from '../shared/buscar/mocks/routes';
 import {BuscarService} from '../shared/buscar/buscar.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatInputModule} from '@angular/material';
 
 describe('EditarComponent', () => {
   let mockBuscarService: MockBuscarService;
@@ -24,7 +26,7 @@ describe('EditarComponent', () => {
         {provide: ActivatedRoute, useValue: mockActivatedRoute},
         {provide: Router, useValue: mockRouter}
       ],
-      imports: [FormsModule]
+      imports: [FormsModule, BrowserAnimationsModule, MatInputModule]
     }).compileComponents();
   }));
 
